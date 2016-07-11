@@ -14,6 +14,7 @@ namespace MvvmPhoneword.ViewModels
 {
     public class PhonewordPageViewModel : INotifyPropertyChanged
     {
+        
         private string phoneNumber;
         public string PhoneNumber
         {
@@ -46,20 +47,13 @@ namespace MvvmPhoneword.ViewModels
             }
         }
 
-        // CallCommand用のFunc<bool> canExecute
-        // ModelのTranslatedNumberがあればTrueを返します。 TODO: ViewModelだけでチェックすべき？
-        private bool CanCall()
-        {
-            return !string.IsNullOrEmpty(Numbers.Instance.TranslatedNumber);
-        }
+        public Command CallCommand { get; private set; }
+        public Command CallHistoryCommand { get; private set; }
 
-        // CallHistoryCommand用のFunc<bool> canExecute
-        // ModelのListのCountが1以上であればTrueを返します。 TODO: これもViewModelだけでチェックすべき？
-        private bool CanShowHistory()
-        {
-            return Numbers.Instance.PhoneNumbers.Count > 0;
-        }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public PhonewordPageViewModel()
         {
             // ModelにPropertyChangedイベントが発生したらViewModelで受け取ります。
@@ -83,8 +77,19 @@ namespace MvvmPhoneword.ViewModels
             }, CanShowHistory);
         }
 
-        public Command CallCommand { get; private set; }
-        public Command CallHistoryCommand { get; private set; }
+        // CallCommand用のFunc<bool> canExecute
+        // ModelのTranslatedNumberがあればTrueを返します。 TODO: ViewModelだけでチェックすべき？
+        private bool CanCall()
+        {
+            return !string.IsNullOrEmpty(Numbers.Instance.TranslatedNumber);
+        }
+
+        // CallHistoryCommand用のFunc<bool> canExecute
+        // ModelのListのCountが1以上であればTrueを返します。 TODO: これもViewModelだけでチェックすべき？
+        private bool CanShowHistory()
+        {
+            return Numbers.Instance.PhoneNumbers.Count > 0;
+        }
 
 
         /// <summary>

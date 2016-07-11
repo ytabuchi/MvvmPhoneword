@@ -16,14 +16,6 @@ namespace MvvmPhoneword.Models
         /// </summary>
         public static Numbers Instance { get; } = new Numbers();
 
-        /// <summary>
-        /// Private Constructor for showing just one instance.
-        /// </summary>
-        private Numbers()
-        {
-
-        }
-
         private string phoneNumber;
         public string PhoneNumber
         {
@@ -56,6 +48,14 @@ namespace MvvmPhoneword.Models
                     OnPropertyChanged();
                 }
             }
+        }
+
+        /// <summary>
+        /// Private Constructor for showing just one instance.
+        /// </summary>
+        private Numbers()
+        {
+
         }
 
         public void Dial()
