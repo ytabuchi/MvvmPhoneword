@@ -11,8 +11,9 @@ using MvvmPhoneword.Models;
 
 namespace MvvmPhoneword.ViewModels
 {
-    public class CallHistoryPageViewModel : INotifyPropertyChanged
+    public class CallHistoryPageViewModel : ViewModelBase
     {
+
         private List<Number> phoneNumbers;
         public List<Number> PhoneNumbers
         {
@@ -32,11 +33,5 @@ namespace MvvmPhoneword.ViewModels
             this.PhoneNumbers = Numbers.Instance.PhoneNumbers;
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

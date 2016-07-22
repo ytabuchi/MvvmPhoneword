@@ -12,9 +12,9 @@ using MvvmPhoneword.Models;
 
 namespace MvvmPhoneword.ViewModels
 {
-    public class PhonewordPageViewModel : INotifyPropertyChanged
+    public class PhonewordPageViewModel : ViewModelBase
     {
-        
+
         private string phoneNumber;
         public string PhoneNumber
         {
@@ -111,11 +111,5 @@ namespace MvvmPhoneword.ViewModels
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
